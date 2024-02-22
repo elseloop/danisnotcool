@@ -1,0 +1,171 @@
+---
+
+---
+
+<header class="site-header">
+  <div class="brand">
+    <h1><a href="/">
+    <img src="../../icondan.webp" alt="My ugly mug, but in cute vector form." />
+    </a></h1>
+  </div>
+  <nav class="main-nav">
+    <a href="#">Work</a>
+    <a href="#">Writing</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    grid-area: 1 / span 2;
+    align-items: center;
+    background-color: transparent;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1rem;
+    justify-content: flex-start;
+    padding: 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    mix-blend-mode: difference;
+  }
+
+  .is-scrolled .site-header:has(.brand:hover),
+  .is-scrolled .site-header:has(.brand:focus),
+  .is-scrolled .site-header:has(.main-nav:hover),
+  .is-scrolled .site-header:has(.main-nav:focus) {
+    mix-blend-mode: unset;
+  }
+
+  .brand,
+  .brand img {
+    max-width: 100px;
+  }
+
+  .is-scrolled .brand:hover,
+  .is-scrolled .brand:focus {
+    & + .main-nav {
+      animation-duration: 3s;
+      animation-name: slide-out;
+      animation-iteration-count: 1;
+      animation-direction: normal;
+    }
+  }
+
+  .brand img {
+    mix-blend-mode: difference;
+
+    &:hover,
+    &:focus {
+      opacity: .6;
+    }
+  }
+
+  .brand h1 {
+    font-size: 1rem;
+    color: white;
+    mix-blend-mode: difference;
+  }
+
+  .main-nav {
+    align-items: center;
+    animation-duration: 3s;
+    animation-name: slide-out;
+    animation-iteration-count: 1;
+    animation-direction: forwards;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1rem;
+    justify-content: flex-start;
+    max-width: 100%;
+    overflow: hidden;
+
+    &:hover {
+      max-width: 100% !important;
+    }
+
+    a {
+      color: #fff;
+      display: block;
+      font-size: 2rem;
+      padding: 1rem;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        color: var(--color-black);
+        text-decoration: underline;
+      }
+
+      .is-scrolled & {
+        background-color: var(--color-white);
+        color: var(--color-black);
+      }
+    }
+
+    .is-scrolled & {
+      animation: slide-in 1s 0s forwards;
+    }
+  }
+
+  @keyframes slide-in {
+    from {
+      max-width: 100%;
+    }
+
+    to {
+      max-width: 0;
+    }
+  }
+
+  @keyframes slide-out {
+    from {
+      max-width: 0%;
+    }
+
+    to {
+      max-width: 100%;
+    }
+  }
+</style>
+
+<script>
+  import throttle from 'lodash/throttle';
+
+  const handleScroll = () => {
+    const navIsMega = window.matchMedia( '(min-width: 700px)' );
+
+    [ 'load', 'scroll' ].forEach( ( ev ) => {
+      window.addEventListener(
+        ev,
+        throttle( () => {
+          if ( ! navIsMega.matches ) {
+            return;
+          }
+
+          if ( window.scrollY > 0 ) {
+            document.body.classList.add( 'is-scrolled' );
+          } else {
+            document.body.classList.remove( 'is-scrolled' );
+          }
+
+          if ( window.scrollY >= 20 ) {
+            document.body.classList.add( 'is-sticky-header' );
+          } else {
+            document.body.classList.remove( 'is-sticky-header' );
+          }
+        },
+        250,
+        {
+          trailing: true,
+          leading: true,
+        } )
+      );
+    } );
+  };
+
+  handleScroll();
+</script>
