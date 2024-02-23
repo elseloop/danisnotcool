@@ -1,0 +1,55 @@
+---
+import { getMostRecentPost } from "../../utils/sanity.js";
+import Card from "../Card.astro";
+export const prerender = false;
+const post = await getMostRecentPost();
+---
+
+<section class="parfait parfait--yellow parfait--short parfait--home-writing">
+  <div class="container">
+    <h2>Writing</h2>
+    <h3 class="heading heading--h1">A collection of Nouns, verbs, etc.</h3>
+    <Card post={post} />
+  </div>
+</section>
+
+<style>
+  .parfait {
+    border: 10px solid var(--color-white);
+    border-top: 0;
+    min-height: 80vh;
+    background-color: var(--color-yellow);
+    background-image: url("desk.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    padding: 3rem;
+    padding-left: calc(100px + 3rem);
+    color: var(--color-black);
+  }
+
+  .heading {
+    line-height: 1;
+    margin: 0;
+    font-family: 'Bebas Neue', cursive;
+  }
+
+  .heading--h1 {
+    font-size: clamp(5rem, -13.125rem + 50vw, 10rem);
+  }
+
+  .heading--h2 {
+    font-size: clamp(3rem, -6.25rem + 50vw, 6rem);
+  }
+
+  .heading--h2 a {
+    color: var(--color-white);
+    text-decoration: none;
+  }
+
+  .heading--h2 a:hover,
+  .heading--h2 a:focus {
+    color: var(--color-pink);
+    text-decoration: underline;
+  }
+</style>

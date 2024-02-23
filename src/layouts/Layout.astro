@@ -2,7 +2,7 @@
 // https://docs.astro.build/en/guides/view-transitions/
 import { ViewTransitions } from 'astro:transitions';
 import Header from "../components/Header.astro";
-import Hero from "../components/Hero.astro";
+import Footer from "../components/Footer.astro";
 const { title } = Astro.props;
 ---
 
@@ -34,7 +34,8 @@ const { title } = Astro.props;
   </head>
   <body>
     <Header />
-    <Hero />
+    <slot />
+    <Footer />
   </body>
 </html>
 
@@ -48,6 +49,45 @@ const { title } = Astro.props;
   --color-white: #fafaff;
   --color-black: #191716;
   }
+
+  @layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: unset;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  img,
+  picture,
+  svg,
+  canvas {
+    display: block;
+    max-inline-size: 100%;
+    block-size: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
 
   body {
     font-family: Futura, sans-serif;

@@ -1,8 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Home/Hero.astro";
+import Work from "../components/Home/Work.astro";
+import Writing from "../components/Home/Writing.astro";
+import Contact from "../components/Home/Contact.astro";
+
 export const prerender = false;
 ---
 
 <Layout title="Dan is not cool.">
-
+  <Hero />
+  <Work />
+  <Writing />
+  <Contact />
 </Layout>

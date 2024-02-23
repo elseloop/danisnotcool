@@ -33,6 +33,10 @@
     mix-blend-mode: difference;
   }
 
+  .is-scrolled > .site-header {
+    outline: 2px dashed red;
+  }
+
   .is-scrolled .site-header:has(.brand:hover),
   .is-scrolled .site-header:has(.brand:focus),
   .is-scrolled .site-header:has(.main-nav:hover),
@@ -45,23 +49,20 @@
     max-width: 100px;
   }
 
-  .is-scrolled .brand:hover,
-  .is-scrolled .brand:focus {
-    & + .main-nav {
-      animation-duration: 3s;
-      animation-name: slide-out;
-      animation-iteration-count: 1;
-      animation-direction: normal;
-    }
+  .is-scrolled .brand:hover + .main-nav,
+  .is-scrolled .brand:focus + .main-nav {
+    animation-duration: 3s;
+    animation-name: slide-out;
+    animation-iteration-count: 1;
+    animation-direction: normal;
   }
 
   .brand img {
     mix-blend-mode: difference;
+  }
 
-    &:hover,
-    &:focus {
-      opacity: .6;
-    }
+  .brand img:hover, .brand img:focus {
+    opacity: 0.65;
   }
 
   .brand h1 {
@@ -82,33 +83,27 @@
     justify-content: flex-start;
     max-width: 100%;
     overflow: hidden;
-
-    &:hover {
-      max-width: 100% !important;
-    }
-
-    a {
-      color: #fff;
-      display: block;
-      font-size: 2rem;
-      padding: 1rem;
-      text-decoration: none;
-
-      &:hover,
-      &:focus {
-        color: var(--color-black);
-        text-decoration: underline;
-      }
-
-      .is-scrolled & {
-        background-color: var(--color-white);
-        color: var(--color-black);
-      }
-    }
-
-    .is-scrolled & {
-      animation: slide-in 1s 0s forwards;
-    }
+  }
+  .main-nav:hover {
+    max-width: 100% !important;
+  }
+  .main-nav a {
+    color: #fff;
+    display: block;
+    font-size: 2rem;
+    padding: 1rem;
+    text-decoration: none;
+  }
+  .main-nav a:hover, .main-nav a:focus {
+    color: var(--color-black);
+    text-decoration: underline;
+  }
+  .is-scrolled .main-nav a {
+    background-color: var(--color-white);
+    color: var(--color-black);
+  }
+  .is-scrolled .main-nav {
+    animation: slide-in 1s 0s forwards;
   }
 
   @keyframes slide-in {
@@ -137,6 +132,7 @@
 
   const handleScroll = () => {
     const navIsMega = window.matchMedia( '(min-width: 700px)' );
+    const header = document.querySelector( '.site-header');
 
     [ 'load', 'scroll' ].forEach( ( ev ) => {
       window.addEventListener(
@@ -147,15 +143,9 @@
           }
 
           if ( window.scrollY > 0 ) {
-            document.body.classList.add( 'is-scrolled' );
+            header.classList.add( 'is-scrolled' );
           } else {
-            document.body.classList.remove( 'is-scrolled' );
-          }
-
-          if ( window.scrollY >= 20 ) {
-            document.body.classList.add( 'is-sticky-header' );
-          } else {
-            document.body.classList.remove( 'is-sticky-header' );
+            header.classList.remove( 'is-scrolled' );
           }
         },
         250,

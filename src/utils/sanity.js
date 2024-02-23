@@ -13,3 +13,9 @@ export async function getPost(slug) {
     },
   );
 }
+
+export async function getMostRecentPost() {
+  return await sanityClient.fetch(
+    groq`*[_type == "post" && defined(slug.current)][0]`
+  );
+}
