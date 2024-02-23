@@ -23,8 +23,7 @@ const post = await getMostRecentPost();
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom center;
-    padding: 3rem;
-    padding-left: calc(100px + 3rem);
+    padding: 3rem 1rem;
     color: var(--color-black);
   }
 
@@ -35,7 +34,7 @@ const post = await getMostRecentPost();
   }
 
   .heading--h1 {
-    font-size: clamp(5rem, -13.125rem + 50vw, 10rem);
+    font-size: clamp(3.5rem, -13.125rem + 50vw, 10rem);
   }
 
   .heading--h2 {
@@ -51,5 +50,11 @@ const post = await getMostRecentPost();
   .heading--h2 a:focus {
     color: var(--color-pink);
     text-decoration: underline;
+  }
+
+  @media (min-width: 700px) {
+    .parfait {
+      padding-left: calc(100px + 3rem);
+    }
   }
 </style>

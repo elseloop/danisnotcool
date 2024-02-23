@@ -2,13 +2,15 @@
 
 ---
 <div class="hero">
-  <div class="primary">
-    <h1 class="heading heading--h1">Hi! Hello! Hey there!</h1>
-  </div>
-  <div class="secondary">
-    <img src="squirrel.png" alt="photo of my idiot mug" class="photo" />
-    <h2>My name’s Dan and I’m super happy you’re here.</h2>
-    <p>I’m a frontend engineer in Portland, Oregon. I like a11y, JavaScript, CSS, rain, <a href="https://www.google.com/search?sca_esv=1e0a15d19e51fa54&q=mister+rogers+cardigan&tbm=isch&source=lnms&sa=X&sqi=2&ved=2ahUKEwiY7pGEgcCEAxVUIjQIHcgHDPoQ0pQJegQIChAB&biw=1707&bih=1294&dpr=2">cardigans</a>, good line breaks, moss, & <a href="https://www.poetryfoundation.org/poems/52422/cartoon-physics-part-1">cartoon physics</a>.</p>
+  <div class="container">
+    <div class="primary">
+      <h1 class="heading heading--h1">Hi! Hello! Hey there!</h1>
+    </div>
+    <div class="secondary">
+      <img src="squirrel.png" alt="photo of my idiot mug" class="photo" />
+      <h2>My name’s Dan and I’m super happy you’re here.</h2>
+      <p>I’m a frontend engineer in Portland, Oregon. I like a11y, JavaScript, CSS, rain, <a href="https://www.google.com/search?sca_esv=1e0a15d19e51fa54&q=mister+rogers+cardigan&tbm=isch&source=lnms&sa=X&sqi=2&ved=2ahUKEwiY7pGEgcCEAxVUIjQIHcgHDPoQ0pQJegQIChAB&biw=1707&bih=1294&dpr=2">cardigans</a>, good line breaks, moss, & <a href="https://www.poetryfoundation.org/poems/52422/cartoon-physics-part-1">cartoon physics</a>.</p>
+    </div>
   </div>
 </div>
 
@@ -16,17 +18,20 @@
   .hero {
     border: 10px solid var(--color-white);
     border-bottom: 0;
-    align-items: end;
-    justify-content: end;
-    min-height: 80vh;
-    display: grid;
-    grid-template-columns: 1fr;
     background-image: url("home.hero.bg.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    padding: 8rem calc(100px + 3rem) 3rem;
-    gap: 0;
+  }
+
+  .hero .container {
+    align-items: end;
+    justify-content: end;
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 80vh;
+    padding: 12rem 1rem 3rem;
+    gap: 2rem;
   }
 
   .hero .primary {
@@ -58,7 +63,7 @@
   }
 
   .heading--h1 {
-    font-size: clamp(5rem, -13.125rem + 50vw, 15rem);
+    font-size: clamp(3.5rem, -13.125rem + 50vw, 15rem);
     line-height: 1;
     margin: 0;
     font-family: 'Bebas Neue', cursive;
@@ -72,11 +77,12 @@
     max-width: 200px;
   }
 
-  @media (min-width: 700px) {
-    .hero {
+  @media (min-width: 1000px) {
+    .hero .container {
       grid-template-columns: 1fr .5fr;
       grid-template-rows: auto;
       gap: 5rem;
+      padding: 8rem calc(100px + 3rem) 3rem;
     }
   }
 </style>

@@ -3,10 +3,17 @@
 ---
 
 <header class="site-header">
-  <div class="brand">
-    <h1><a href="/">
-    <img src="../../icondan.webp" alt="My ugly mug, but in cute vector form." />
-    </a></h1>
+  <div class="container">
+    <div class="brand">
+      <h1><a href="/">
+      <img src="../../icondan.webp" alt="My ugly mug, but in cute vector form." />
+      </a></h1>
+    </div>
+    <div class="hamburger hamburger--3dx">
+      <div class="hamburger-box">
+        <div class="hamburger-inner"></div>
+      </div>
+    </div>
   </div>
   <nav class="main-nav">
     <a href="#">Work</a>
@@ -17,48 +24,32 @@
 </header>
 
 <style>
-  .site-header {
+
+.container {
+    max-width: 1800px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .site-header .container {
     grid-area: 1 / span 2;
     align-items: center;
     background-color: transparent;
     display: flex;
     flex-flow: row nowrap;
     gap: 1rem;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding: 2rem;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: calc(100vw - 20px - 2rem);
     mix-blend-mode: difference;
-  }
-
-  .is-scrolled > .site-header {
-    outline: 2px dashed red;
-  }
-
-  .is-scrolled .site-header:has(.brand:hover),
-  .is-scrolled .site-header:has(.brand:focus),
-  .is-scrolled .site-header:has(.main-nav:hover),
-  .is-scrolled .site-header:has(.main-nav:focus) {
-    mix-blend-mode: unset;
+    z-index: 2;
   }
 
   .brand,
   .brand img {
     max-width: 100px;
-  }
-
-  .is-scrolled .brand:hover + .main-nav,
-  .is-scrolled .brand:focus + .main-nav {
-    animation-duration: 3s;
-    animation-name: slide-out;
-    animation-iteration-count: 1;
-    animation-direction: normal;
-  }
-
-  .brand img {
-    mix-blend-mode: difference;
   }
 
   .brand img:hover, .brand img:focus {
@@ -68,29 +59,32 @@
   .brand h1 {
     font-size: 1rem;
     color: white;
-    mix-blend-mode: difference;
   }
 
   .main-nav {
     align-items: center;
-    animation-duration: 3s;
-    animation-name: slide-out;
-    animation-iteration-count: 1;
-    animation-direction: forwards;
     display: flex;
-    flex-flow: row nowrap;
-    gap: 1rem;
-    justify-content: flex-start;
-    max-width: 100%;
-    overflow: hidden;
+    flex-flow: column nowrap;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 200%;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(202, 46, 85, .9);
+    color: var(--color-white);
+    transition: left 0.5s ease-in-out;
+    z-index: 1;
   }
-  .main-nav:hover {
-    max-width: 100% !important;
+
+  .main-nav.is-active {
+    left: 0;
   }
+
   .main-nav a {
-    color: #fff;
+    color: var(--color-black);
     display: block;
-    font-size: 2rem;
+    font-size: clamp(3.5rem, -13.125rem + 50vw, 10rem);
     padding: 1rem;
     text-decoration: none;
   }
@@ -98,31 +92,93 @@
     color: var(--color-black);
     text-decoration: underline;
   }
-  .is-scrolled .main-nav a {
-    background-color: var(--color-white);
-    color: var(--color-black);
-  }
-  .is-scrolled .main-nav {
-    animation: slide-in 1s 0s forwards;
-  }
 
-  @keyframes slide-in {
-    from {
-      max-width: 100%;
-    }
 
-    to {
-      max-width: 0;
-    }
-  }
+  /*!
+ * Hamburgers
+ * @description Tasty CSS-animated hamburgers
+ * @author Jonathan Suh @jonsuh
+ * @site https://jonsuh.com/hamburgers
+ * @link https://github.com/jonsuh/hamburgers
+ */
+.hamburger {
+  padding: 15px 15px;
+  display: inline-block;
+  cursor: pointer;
+  transition-property: opacity, filter;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  overflow: visible;
+  position: relative;
+  z-index: 10;
+}
+  .hamburger:hover {
+    opacity: 0.7; }
+  .hamburger.is-active:hover {
+    opacity: 0.7; }
+  .hamburger.is-active .hamburger-inner,
+  .hamburger.is-active .hamburger-inner::before,
+  .hamburger.is-active .hamburger-inner::after {
+    background-color: #fff; }
 
-  @keyframes slide-out {
-    from {
-      max-width: 0%;
-    }
+.hamburger-box {
+  width: 40px;
+  height: 24px;
+  display: inline-block;
+  position: relative; }
 
-    to {
-      max-width: 100%;
+.hamburger-inner {
+  display: block;
+  top: 50%;
+  margin-top: -2px; }
+  .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+    width: 40px;
+    height: 4px;
+    background-color: #fff;
+    border-radius: 4px;
+    position: absolute;
+    transition-property: transform;
+    transition-duration: 0.15s;
+    transition-timing-function: ease; }
+  .hamburger-inner::before, .hamburger-inner::after {
+    content: "";
+    display: block; }
+  .hamburger-inner::before {
+    top: -10px; }
+  .hamburger-inner::after {
+    bottom: -10px; }
+
+/*
+   * 3DX
+   */
+.hamburger--3dx .hamburger-box {
+  perspective: 80px; }
+
+.hamburger--3dx .hamburger-inner {
+  transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), background-color 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1); }
+  .hamburger--3dx .hamburger-inner::before, .hamburger--3dx .hamburger-inner::after {
+    transition: transform 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1); }
+
+.hamburger--3dx.is-active .hamburger-inner {
+  background-color: transparent !important;
+  transform: rotateY(180deg); }
+  .hamburger--3dx.is-active .hamburger-inner::before {
+    transform: translate3d(0, 10px, 0) rotate(45deg); }
+  .hamburger--3dx.is-active .hamburger-inner::after {
+    transform: translate3d(0, -10px, 0) rotate(-45deg); }
+
+    @media screen and (min-width: 700px) {
+      .main-nav.is-active {
+        left: 33%;
+      }
+    .hamburger {
+      /* display: none; */
     }
   }
 </style>
@@ -157,5 +213,16 @@
     } );
   };
 
+  const toggleBurger = () => {
+    const hamburger = document.querySelector( '.hamburger' );
+    const mainNav = document.querySelector( '.main-nav' );
+
+    hamburger.addEventListener( 'click', () => {
+      hamburger.classList.toggle( 'is-active' );
+      mainNav.classList.toggle( 'is-active' );
+    } );
+  };
+
   handleScroll();
+  toggleBurger();
 </script>

@@ -4,7 +4,7 @@
 <section class="parfait parfait--blue parfait--tall parfait--home-work">
   <div class="container">
     <h2>Work</h2>
-    <h3 class="heading heading--h1">Some Client work & other assorted nonsense</h3>
+    <h3 class="heading heading--h1">Client work & assorted nonsense</h3>
   </div>
 </section>
 
@@ -17,15 +17,20 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: bottom center;
-    padding: 3rem;
-    padding-left: calc(100px + 3rem);
+    padding: 3rem 1rem;
     color: var(--color-tan);
   }
 
   .heading--h1 {
-    font-size: clamp(5rem, -13.125rem + 50vw, 10rem);
+    font-size: clamp(3.5rem, -13.125rem + 50vw, 10rem);
     line-height: 1;
     margin: 0;
     font-family: 'Bebas Neue', cursive;
+  }
+
+  @media (min-width: 700px) {
+    .parfait {
+      padding-left: calc(100px + 3rem);
+    }
   }
 </style>
