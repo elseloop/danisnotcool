@@ -1,5 +1,6 @@
 ---
-
+import { Image } from 'astro:assets';
+import squirrel from '../../images/squirrel.png';
 ---
 <div class="hero">
   <div class="container">
@@ -7,7 +8,7 @@
       <h1 class="heading heading--h1">Hi! Hello! Hey there!</h1>
     </div>
     <div class="secondary">
-      <img src="squirrel.png" alt="photo of my idiot mug" class="photo" />
+      <Image src={squirrel} alt="my idiot mug" class="photo" />
       <h2>My name’s Dan and I’m super happy you’re here.</h2>
       <p>I’m a frontend engineer in Portland, Oregon. I like a11y, JavaScript, CSS, rain, <a href="https://www.google.com/search?sca_esv=1e0a15d19e51fa54&q=mister+rogers+cardigan&tbm=isch&source=lnms&sa=X&sqi=2&ved=2ahUKEwiY7pGEgcCEAxVUIjQIHcgHDPoQ0pQJegQIChAB&biw=1707&bih=1294&dpr=2">cardigans</a>, good line breaks, moss, & <a href="https://www.poetryfoundation.org/poems/52422/cartoon-physics-part-1">cartoon physics</a>.</p>
     </div>
@@ -16,12 +17,13 @@
 
 <style>
   .hero {
-    border: 10px solid var(--color-white);
-    border-bottom: 0;
-    background-image: url("home.hero.bg.png");
+    background-color: var(--color-orange);
+    background-image: url(../../images/home.hero.bg.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    border: 10px solid var(--color-white);
+    border-bottom: 0;
   }
 
   .hero .container {
@@ -76,6 +78,7 @@
     border-radius: 50%;
     margin-bottom: 1rem;
     max-width: 200px;
+    height: auto;
   }
 
   @media (min-width: 1000px) {
