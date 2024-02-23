@@ -35,12 +35,24 @@ const { post } = Astro.props;
 
 <style>
   .card {
+    background-color: var(--color-white);
+    border-radius: 8px;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.03);
+    cursor: pointer;
     display: flex;
     flex-direction: column;
-    padding: var(--space-2);
-    padding: 9px;
+    padding: 1rem;
     position: relative;
-    border-bottom: 1px solid #ced2d9;
+    transform: scale(1);
+    transition:
+      transform 0.2s ease-in-out,
+      box-shadow 0.2s ease-in-out;
+
+    &:hover,
+    &:focus {
+      box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+      transform: scale(1.025);
+    }
 
     & .card__container {
       margin: 0 var(--space-1) 0;
@@ -85,59 +97,6 @@ const { post } = Astro.props;
     & .card__link {
       color: var(--black);
       text-decoration: none;
-
-      &:hover {
-        opacity: 0.8;
-        transition: 0.2s;
-      }
-
-      &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-      }
-    }
-
-    &:first-child {
-      border-top-left-radius: 3px;
-      border-top-right-radius: 3px;
-    }
-
-    &:last-child {
-      border-bottom-left-radius: 3px;
-      border-bottom-right-radius: 3px;
-    }
-  }
-
-  @media (min-width: 575px) {
-    .card {
-      border: 1px solid #ced2d9;
-      border-bottom: none;
-
-      & .card__title {
-        margin-top: var(--space-4);
-      }
-
-      &:last-child {
-        border-bottom: 1px solid #ced2d9;
-      }
-    }
-  }
-
-  @media (min-width: 800px) {
-    .card {
-      flex-direction: row;
-
-      & .card__container {
-        margin: 0 var(--space-4) 0;
-      }
-
-      & .card__cover,
-      & .card__cover--none {
-        min-width: 366.5px;
-        max-width: 366.5px;
-        max-height: 231px;
-      }
     }
   }
 </style>
