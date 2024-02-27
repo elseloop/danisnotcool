@@ -21,12 +21,6 @@ export default defineType({
       },
     }),
     defineField({
-      name: "excerpt",
-      title: "Excerpt",
-      type: "text",
-      rows: 4,
-    }),
-    defineField({
       name: "mainImage",
       title: "Main image",
       type: "image",
@@ -38,6 +32,35 @@ export default defineType({
       name: "body",
       title: "Body",
       type: "blockContent",
+    }),
+    defineField({
+      name: "did",
+      title: "What I did",
+      type: "string",
+    }),
+    defineField({
+      name: "stack",
+      title: "Tech Stack",
+      type: "string",
+    }),
+    defineField({
+      name: "year",
+      title: "Year",
+      type: "string",
+    }),
+    defineField({
+      name: "designer",
+      title: "Designer",
+      type: "string",
+    }),
+    defineField({
+      name: "designerLink",
+      title: "Designer Link",
+      type: "url",
+      validation: (Rule) =>
+        Rule.uri({
+          scheme: ["http", "https"],
+        }),
     }),
   ],
   preview: {
