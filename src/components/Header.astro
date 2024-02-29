@@ -16,174 +16,123 @@ import uglyMug from '../images/icondan.webp';
       </div>
     </div>
   </div>
-  <nav class="main-nav">
-    <a href="/work">Work</a>
-    <a href="/blog">Writing</a>
-    <a href="/about">About</a>
-    <a href="/contact">Contact</a>
-  </nav>
 </header>
+<nav class="main-nav">
+  <ul class="nav">
+    <li>
+      <a href="/work">Work</a>
+    </li>
+    <li>
+      <a href="/blog">Writing</a>
+    </li>
+    <li>
+      <a href="/about">About</a>
+    </li>
+    <li>
+      <a href="/contact">Contact</a>
+    </li>
+  </ul>
+</nav>
 
 <style>
 
-.container {
-    max-width: 1800px;
-    width: 100%;
-    margin: 0 auto;
-  }
-  .site-header .container {
-    grid-area: 1 / span 2;
-    align-items: center;
-    background-color: transparent;
-    display: flex;
-    flex-flow: row nowrap;
-    gap: 1rem;
-    justify-content: space-between;
-    padding: 2rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: calc(100vw - 20px - 3rem);
-    mix-blend-mode: difference;
-    z-index: 2;
-  }
+.site-header {
+  position: fixed;
+  top: 2rem;
+  left: 0;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  width: 100vw;
+  z-index: 1;
+}
 
-  .brand,
-  .brand img {
-    max-width: 100px;
-    height: auto;
-  }
-
-  .brand img:hover, .brand img:focus {
-    opacity: 0.65;
-  }
-
-  .brand h1 {
-    font-size: 1rem;
-    color: white;
-  }
-
-  .main-nav {
-    align-items: center;
-    display: flex;
-    flex-flow: column nowrap;
-    font-family: 'Bebas Neue', sans-serif;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 200%;
-    bottom: 0;
-    right: 0;
-    background-color: rgba(202, 46, 85, .9);
-    color: var(--color-white);
-    transition: left 0.5s ease-in-out;
-    z-index: 1;
-  }
-
-  .main-nav.is-active {
-    left: 0;
-  }
-
-  .main-nav a {
-    color: var(--color-white);
-    display: block;
-    font-size: clamp(3.5rem, -13.125rem + 50vw, 10rem);
-    padding: 1rem;
-    text-decoration: none;
-  }
-  .main-nav a:hover, .main-nav a:focus {
-    color: var(--color-black);
-    text-decoration: underline;
-  }
-
-
-  /*!
- * Hamburgers
- * @description Tasty CSS-animated hamburgers
- * @author Jonathan Suh @jonsuh
- * @site https://jonsuh.com/hamburgers
- * @link https://github.com/jonsuh/hamburgers
- */
-.hamburger {
-  padding: 15px 15px;
-  display: inline-block;
-  cursor: pointer;
-  transition-property: opacity, filter;
-  transition-duration: 0.15s;
-  transition-timing-function: linear;
-  font: inherit;
-  color: inherit;
-  text-transform: none;
-  background-color: transparent;
-  border: 0;
-  margin: 0;
-  overflow: visible;
-  position: relative;
+.site-header.is-active {
   z-index: 10;
 }
-  .hamburger:hover {
-    opacity: 0.7; }
-  .hamburger.is-active:hover {
-    opacity: 0.7; }
-  .hamburger.is-active .hamburger-inner,
-  .hamburger.is-active .hamburger-inner::before,
-  .hamburger.is-active .hamburger-inner::after {
-    background-color: #fff; }
 
-.hamburger-box {
-  width: 40px;
-  height: 24px;
-  display: inline-block;
-  position: relative; }
+.site-header .container {
+  grid-area: 1 / span 2;
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1rem;
+  justify-content: space-between;
+  mix-blend-mode: difference;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
 
-.hamburger-inner {
+.brand,
+.brand img {
+  max-width: 100px;
+  height: auto;
+  pointer-events: all;
+}
+
+.brand img:hover, .brand img:focus {
+  opacity: 0.65;
+}
+
+.brand h1 {
+  font-size: 1rem;
+  color: white;
+}
+
+.main-nav {
+  background-color: rgba(202, 46, 85, .9);
+  bottom: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  left: 200%;
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  transition: left 0.5s ease-in-out;
+  z-index: 3;
+}
+
+.is-scrolled .main-nav {
+  top: 0;
+}
+
+.main-nav.is-active {
+  left: 0;
+}
+
+.nav {
+  align-items: center;
+  color: var(--color-white);
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 5rem 0;
+}
+
+.main-nav a {
+  color: var(--color-white);
   display: block;
-  top: 50%;
-  margin-top: -2px; }
-  .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
-    width: 40px;
-    height: 4px;
-    background-color: #fff;
-    border-radius: 4px;
-    position: absolute;
-    transition-property: transform;
-    transition-duration: 0.15s;
-    transition-timing-function: ease; }
-  .hamburger-inner::before, .hamburger-inner::after {
-    content: "";
-    display: block; }
-  .hamburger-inner::before {
-    top: -10px; }
-  .hamburger-inner::after {
-    bottom: -10px; }
+  font-size: clamp(2rem, -13.125rem + 50vw, 7rem);
+  text-decoration: none;
+}
+.main-nav a:hover, .main-nav a:focus {
+  color: var(--color-black);
+  text-decoration: underline;
+}
 
-/*
-   * 3DX
-   */
-.hamburger--3dx .hamburger-box {
-  perspective: 80px; }
-
-.hamburger--3dx .hamburger-inner {
-  transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), background-color 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1); }
-  .hamburger--3dx .hamburger-inner::before, .hamburger--3dx .hamburger-inner::after {
-    transition: transform 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1); }
-
-.hamburger--3dx.is-active .hamburger-inner {
-  background-color: transparent !important;
-  transform: rotateY(180deg); }
-  .hamburger--3dx.is-active .hamburger-inner::before {
-    transform: translate3d(0, 10px, 0) rotate(45deg); }
-  .hamburger--3dx.is-active .hamburger-inner::after {
-    transform: translate3d(0, -10px, 0) rotate(-45deg); }
-
-    @media screen and (min-width: 700px) {
-      .main-nav.is-active {
-        left: 33%;
-      }
-    .hamburger {
-      /* display: none; */
-    }
+@media screen and (min-width: 700px) {
+  .main-nav.is-active {
+    left: 33%;
   }
+}
+
+@media screen and (min-height: 1000px) {
+  .main-nav a {
+    font-size: clamp(3.5rem, -13.125rem + 50vw, 10rem);
+  }
+}
 </style>
 
 <script>
@@ -217,16 +166,29 @@ import uglyMug from '../images/icondan.webp';
   };
 
   const toggleBurger = () => {
-    const hamburger = document.querySelector( '.hamburger' );
+    console.log( '🍔');
+    const hamburger = document.querySelectorAll( '.hamburger' );
     const mainNav = document.querySelector( '.main-nav' );
+    const header = document.querySelector( '.site-header' );
 
-    hamburger.addEventListener( 'click', () => {
-      hamburger.classList.toggle( 'is-active' );
-      mainNav.classList.toggle( 'is-active' );
-      document.body.classList.toggle( 'no-scroll' );
+    hamburger.forEach( ( h ) => {
+      h.addEventListener( 'click', () => {
+        console.log( '🍔 clicked');
+        h.classList.toggle( 'is-active' );
+        mainNav.classList.toggle( 'is-active' );
+        header.classList.toggle( 'is-active' );
+        document.body.classList.toggle( 'no-scroll' );
+      } );
     } );
   };
 
   handleScroll();
   toggleBurger();
+
+  document.addEventListener('astro:after-swap',
+  () => {
+    handleScroll();
+    toggleBurger();
+  })
+
 </script>

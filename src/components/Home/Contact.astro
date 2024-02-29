@@ -5,33 +5,42 @@
   <div class="container">
     <h2 class="heading heading--eyebrow">#Contact</h2>
     <h3 class="heading heading--h1">Wanna roll together?</h3>
-    <h4 class="heading heading--h2"><a href="/contact">shout at me!&nbsp;&rarr;</a></h4>
+    <p>Let’s chat.</p>
+    <div class="form-wrap">
+      <form
+        netlify
+        netlify-honeypot
+        name="contact"
+        method="POST"
+        action="/success"
+        class="feedback-form"
+      >
+        <p class="hidden">
+          <label>
+            Don’t fill this out if you’re human: <input name="bot-field" />
+          </label>
+        </p>
+        <input type="hidden" name="form-name" value="contact" />
+        <label for="name">Your name</label>
+        <input id="name" type="text" name="name" />
+        <label for="email">Your email</label>
+        <input id="email" type="email" name="email" required />
+        <label for="message">What are we talking about?</label>
+        <textarea id="message" wrap="soft" name="message" required></textarea>
+        <button type="submit">Do it!</button>
+      </form>
+    </div>
   </div>
 </section>
 
 <style>
   .parfait {
-    border: 10px solid var(--color-white);
     border-top: 0;
-    min-height: 80vh;
     background-color: var(--color-black);
     background-image: url("../../images/rollin.black.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    padding: 3rem 2rem;
+    background-size: contain;
     color: var(--color-white);
-  }
-
-  .heading {
-    line-height: 1;
-    margin: 0;
-    font-family: 'Bebas Neue', cursive;
-  }
-
-  .heading--h1 {
-    font-size: clamp(3.5rem, -13.125rem + 50vw, 10rem);
-    margin-top: 1rem;
+    min-height: 100dvh;
   }
 
   .heading--h2 {
@@ -49,13 +58,9 @@
     text-decoration: underline;
   }
 
-  .heading--eyebrow {
-    font-family: 'Bebas Neue', cursive;
-  }
-
-  @media (min-width: 700px) {
+  @media (min-width: 768px) {
     .parfait {
-      padding-left: calc(100px + 3rem);
+      min-height: 150dvh;
     }
   }
 </style>

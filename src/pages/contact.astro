@@ -1,0 +1,58 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+---
+<Layout title="Contact | Dan is not cool.">
+<section class="contact-wrap">
+  <div class="feedback-form">
+    <h1 class="heading heading--h1">Get at me!</h1>
+    <form
+      netlify
+      netlify-honeypot
+      name="contact"
+      method="POST"
+      action="/success"
+    >
+      <p class="hidden">
+        <label>
+          Don’t fill this out if you’re human: <input name="bot-field" />
+        </label>
+      </p>
+      <input type="hidden" name="form-name" value="contact" />
+      <label for="name">Your name</label>
+      <input id="name" type="text" name="name" />
+      <label for="email">Your email</label>
+      <input id="email" type="email" name="email" required />
+      <label for="message">What are we talking about?</label>
+      <textarea id="message" wrap="soft" name="message" required></textarea>
+      <button type="submit">Do it!</button>
+    </form>
+  </div>
+</section>
+</Layout>
+
+
+<style>
+  .contact-wrap {
+    border: 10px solid var(--color-white);
+    background-color: var(--color-black);
+    background-image: url("../images/rollin.black.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    min-height: 300vh;
+    padding: 3rem 2rem;
+    color: var(--color-white);
+  }
+
+  .heading {
+    line-height: 1;
+    margin: 0;
+    font-family: 'Bebas Neue', cursive;
+  }
+
+  .heading--h1 {
+    font-size: clamp(3.5rem, -13.125rem + 50vw, 10rem);
+    margin-top: 1rem;
+  }
+</style>

@@ -1,0 +1,131 @@
+---
+import Layout from "../layouts/Layout.astro";
+import {PortableText} from "astro-portabletext";
+import { getWork } from '../utils/sanity';
+import { urlFor } from "../utils/image";
+export const prerender = false;
+const posts = await getWork();
+---
+<Layout title="Work | Dan is not cool.">
+<section class="work-wrap">
+  <div class="container">
+    <h1 class="heading heading--h1">Client gigs & assorted fun</h1>
+  {posts.length
+    ? posts.map((work) => (
+        <article class="work__inner">
+          <div class="img-wrap">
+            <img
+              class="card__cover"
+              src={urlFor(work.mainImage).width(1502).height(978).url()}
+              alt="Cover image"
+            />
+          </div>
+          <div class="work__inner__body flow">
+            <h2>{work.title}</h2>
+            {work.projectLink && (
+              <p><a href={work.projectLink}>View project&nbsp;&rarr;</a></p>
+            )}
+            <PortableText value={work.body} />
+            <p><strong>Year:</strong> {
+              new Date(work.year).getFullYear()
+            }</p>
+            <p><strong>Tech stack:</strong> {work.stack}</p>
+            <p><strong>Designer:</strong> {
+              work.designerLink ? (
+                <a href={work.designerLink}>{work.designer}</a>
+              ) : (
+                work.designer
+              )
+            }</p>
+          </div>
+        </article>
+      ))
+    : 'No work found.'}
+</div>
+</section>
+</Layout>
+
+
+<style>
+  .work-wrap {
+    border: 10px solid var(--color-white);
+    min-height: 300vh;
+    background-color: var(--color-blue);
+    background-image: url("../images/iss.png");
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: contain;
+    color: var(--color-tan);
+    padding-bottom: 500px;
+    padding-top: 10rem;
+  }
+
+  .heading {
+    margin-bottom: 5rem;
+  }
+
+  .work__inner {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+  }
+
+  .work__inner + .work__inner {
+    border-top: 1px solid var(--color-tan);
+    margin-top: 5rem;
+    padding-top: 5rem;
+  }
+
+  .work__inner__body > :global(p) {
+    font-size: 1rem;
+  }
+  .work__inner__body :global([href]) {
+    color: var(--color-tan);
+    text-decoration: underline;
+  }
+
+  .work__inner__body :global([href]:hover),
+  .work__inner__body :global([href]:focus) {
+    color: var(--color-white);
+  }
+
+  .img-wrap {
+    position: relative;
+    transition: transform .3s ease-in-out;
+    z-index: 0;
+  }
+
+  .card__cover {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    transform: translateX(-10px);
+    z-index: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .work-wrap {
+      padding-bottom: 1000px;
+      padding-left: calc(100px + 1rem);
+      padding-right: calc(100px + 1rem);
+    }
+
+    .work__inner {
+      align-items: center;
+      flex-direction: row;
+      justify-content: flex-start;
+      text-align: left;
+    }
+
+    .card__cover {
+      transform: translateX(-30px);
+    }
+
+    .work__inner__body {
+      width: 50%;
+    }
+  }
+
+</style>

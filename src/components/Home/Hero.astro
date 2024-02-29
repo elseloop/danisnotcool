@@ -5,12 +5,13 @@ import squirrel from '../../images/squirrel.png';
 <div class="hero">
   <div class="container">
     <div class="primary">
-      <h1 class="heading heading--h1">Hi! Hello! Hey there!</h1>
+      <h1 class="heading heading--h1 heading--h1xl">Hi! Hello! Hey there!</h1>
     </div>
-    <div class="secondary">
+    <div class="secondary flow">
       <Image src={squirrel} alt="my idiot mug" class="photo" />
       <h2>My name’s Dan and I’m super happy you’re here.</h2>
       <p>I’m a frontend engineer in Portland, Oregon. I like a11y, JavaScript, CSS, rain, <a href="https://www.google.com/search?sca_esv=1e0a15d19e51fa54&q=mister+rogers+cardigan&tbm=isch&source=lnms&sa=X&sqi=2&ved=2ahUKEwiY7pGEgcCEAxVUIjQIHcgHDPoQ0pQJegQIChAB&biw=1707&bih=1294&dpr=2">cardigans</a>, good line breaks, moss, & <a href="https://www.poetryfoundation.org/poems/52422/cartoon-physics-part-1">cartoon physics</a>.</p>
+      <p><a href="/about">More about me &rarr;</a></p>
     </div>
   </div>
 </div>
@@ -31,7 +32,8 @@ import squirrel from '../../images/squirrel.png';
     justify-content: end;
     display: grid;
     grid-template-columns: 1fr;
-    min-height: 80vh;
+    max-width: 1800px;
+    min-height: 90vh;
     padding: 12rem 1rem 3rem;
     gap: 2rem;
   }
@@ -50,10 +52,6 @@ import squirrel from '../../images/squirrel.png';
     padding-bottom: 1.75rem;
   }
 
-  .hero .secondary > * + * {
-    margin-top: 1rem;
-  }
-
   .hero .secondary a {
     color: var(--color-white);
     text-decoration: underline;
@@ -62,14 +60,6 @@ import squirrel from '../../images/squirrel.png';
   .hero .secondary a:hover,
   .hero .secondary a:focus {
     color: var(--color-black);
-  }
-
-  .heading--h1 {
-    font-size: clamp(3.5rem, -13.125rem + 50vw, 15rem);
-    line-height: 1;
-    margin: 0;
-    font-family: 'Bebas Neue', sans-serif;
-    text-align: center;
   }
 
   .photo {
@@ -81,16 +71,23 @@ import squirrel from '../../images/squirrel.png';
     height: auto;
   }
 
+h2 {
+  border-top: 1rem solid;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  color: var(--color-white);
+  line-height: 1;
+  font-size: clamp(2rem, -1.2188rem + 7.5vw, 3rem);
+  font-family: 'Bebas Neue', cursive;
+  margin: 0;
+}
+
   @media (min-width: 1000px) {
     .hero .container {
       grid-template-columns: 1fr .5fr;
       grid-template-rows: auto;
       gap: 5rem;
       padding: 8rem calc(100px + 3rem) 3rem;
-    }
-
-    .heading--h1 {
-      text-align: left;
     }
   }
 </style>

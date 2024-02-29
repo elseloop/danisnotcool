@@ -21,6 +21,15 @@ export default defineType({
       },
     }),
     defineField({
+      name: "projectLink",
+      title: "Project Link",
+      type: "url",
+      validation: (Rule) =>
+        Rule.uri({
+          scheme: ["http", "https"],
+        }),
+    }),
+    defineField({
       name: "mainImage",
       title: "Main image",
       type: "image",
@@ -46,7 +55,7 @@ export default defineType({
     defineField({
       name: "year",
       title: "Year",
-      type: "string",
+      type: "date",
     }),
     defineField({
       name: "designer",

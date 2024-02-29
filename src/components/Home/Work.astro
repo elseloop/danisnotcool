@@ -1,40 +1,158 @@
 ---
-
+import { getRandomWork } from "../../utils/sanity.js";
+const work = await getRandomWork();
+export const prerender = false;
+import { urlFor } from "../../utils/image";
+import {PortableText} from "astro-portabletext";
 ---
 <section class="parfait parfait--blue parfait--tall parfait--home-work">
   <div class="container">
     <h2 class="heading heading--eyebrow">#Work</h2>
-    <h3 class="heading heading--h1">Client gigs & assorted nonsense</h3>
+    <h3 class="heading heading--h1">Client gigs & assorted fun</h3>
+    <div class="work__inner">
+      {
+        work.mainImage ?
+          work.projectLink ? (
+            <div class="img-wrap">
+              <a href={work.projectLink}>
+                <img
+                  class="card__cover"
+                  src={urlFor(work.mainImage).width(1502).height(978).url()}
+                  alt="Cover image"
+                />
+              </a>
+            </div>
+          ) : (
+            <div class="img-wrap">
+              <img
+                class="card__cover"
+                src={urlFor(work.mainImage).width(1502).height(978).url()}
+                alt="Cover image"
+              />
+            </div>
+          ) : (
+            <div class="card__cover--none" />
+          )
+      }
+
+      <div class="work__inner__body flow">
+        <h2>{work.title}</h2>
+        {work.projectLink && (
+          <p><a href={work.projectLink}>View project&nbsp;&rarr;</a></p>
+        )}
+        <PortableText value={work.body} />
+        <p><strong>Year:</strong> {
+          new Date(work.year).getFullYear()
+        }</p>
+        <p><strong>Tech stack:</strong> {work.stack}</p>
+        <p><strong>Designer:</strong> {
+          work.designerLink ? (
+            <a href={work.designerLink}>{work.designer}</a>
+          ) : (
+            work.designer
+          )
+        }</p>
+      </div>
+    </div>
+
+    <h4 class="heading heading--h2"><a href="/work">More Work!&nbsp;&rarr;</a></h4>
   </div>
 </section>
 
 <style>
   .parfait {
     border: 10px solid var(--color-white);
-    min-height: 100vh;
+    min-height: calc(100vh + 300px);
     background-color: var(--color-blue);
     background-image: url("../../images/iss.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    padding: 3rem 1rem;
     color: var(--color-tan);
   }
 
-  .heading--h1 {
-    font-family: 'Bebas Neue', cursive;
-    font-size: clamp(3.5rem, -13.125rem + 50vw, 10rem);
-    line-height: 1;
-    margin-top: 1rem;
+  .work__inner {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    justify-content: center;
+    padding-top: 2.5rem;
   }
 
-  .heading--eyebrow {
-    font-family: 'Bebas Neue', cursive;
+  .work__inner__body > :global(p) {
+    font-size: 1rem;
   }
 
-  @media (min-width: 700px) {
+  .work__inner__body > :global(h2) {
+    margin-top: 0;
+  }
+
+  .work__inner__body :global([href]) {
+    color: var(--color-tan);
+    text-decoration: underline;
+  }
+
+  .work__inner__body :global([href]:hover),
+  .work__inner__body :global([href]:focus) {
+    color: var(--color-white);
+  }
+
+  .img-wrap {
+    min-width: 66%;
+    position: relative;
+    transition: transform .3s ease-in-out;
+    z-index: 0;
+  }
+
+  .img-wrap:has(a):hover,
+  .img-wrap:has(a):focus {
+    transform: scale(1.01);
+  }
+
+  .card__cover {
+    display: block;
+    height: auto;
+    margin: 2rem 0;
+    transform: translateX(-10px);
+    max-width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .heading--h2 {
+    font-size: clamp(1.5rem, -0.2308rem + 5.5385vw, 6rem);
+    margin-top: 2rem;
+  }
+
+  .heading--h2 a {
+    color: var(--color-tan);
+    text-decoration: none;
+  }
+
+  .heading--h2 a:hover,
+  .heading--h2 a:focus {
+    color: var(--color-white);
+    text-decoration: underline;
+  }
+
+  @media (min-width: 650px) {
     .parfait {
-      padding-left: calc(100px + 3rem);
+      min-height: calc(100vh + 1000px);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .work__inner {
+      flex-direction: row;
+      gap: 2rem;
+      justify-content: flex-start;
+      text-align: left;
+    }
+
+    .card--cover {
+      transform: translateX(-30px);
+    }
+
+    .heading--h2 {
+      margin-top: 0;
     }
   }
 </style>

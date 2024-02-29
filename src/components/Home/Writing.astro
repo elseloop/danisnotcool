@@ -17,27 +17,11 @@ const post = await getMostRecentPost();
 
 <style>
   .parfait {
-    border: 10px solid var(--color-white);
     border-top: 0;
-    min-height: 80vh;
     background-color: var(--color-yellow);
     background-image: url("../../images/desk.png");
     background-size: cover;
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    padding: 3rem 1rem;
     color: var(--color-black);
-  }
-
-  .heading {
-    line-height: 1;
-    margin: 0;
-    font-family: 'Bebas Neue', cursive;
-  }
-
-  .heading--h1 {
-    font-size: clamp(3.5rem, -13.125rem + 50vw, 10rem);
-    margin-top: 1rem;
   }
 
   .heading--h2 {
@@ -55,9 +39,6 @@ const post = await getMostRecentPost();
     text-decoration: underline;
   }
 
-  .heading--eyebrow {
-    font-family: 'Bebas Neue', cursive;
-  }
 
   .grid {
     align-content: stretch;
@@ -66,16 +47,10 @@ const post = await getMostRecentPost();
     gap: 2rem;
     grid-template-columns: repeat(
       auto-fill,
-      minmax(300px, 1fr)
+      minmax(270px, 1fr)
     );
     grid-auto-rows: minmax(200px, auto);
     justify-items: stretch;
     margin-top: 2rem;
-  }
-
-  @media (min-width: 700px) {
-    .parfait {
-      padding-left: calc(100px + 3rem);
-    }
   }
 </style>
