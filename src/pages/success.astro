@@ -1,5 +1,34 @@
 ---
+import Layout from "../layouts/Layout.astro";
 
 ---
+<Layout title="Contact | Dan is not cool.">
+<section class="success-wrap">
+    <h1 class="heading heading--h1">Business high five!</h1>
+    <h2 class="heading heading--h2">You nailed it, buddy.</h2>
+</section>
+</Layout>
 
-<h1>You did it!</h1>
+
+<style>
+  .success-wrap {
+    align-items: center;
+    border: 10px solid var(--color-white);
+    background-color: var(--color-pink);
+    background-image: url("../images/hi5.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    color: var(--color-white);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .heading--h1 {
+    text-align: center;
+  }
+</style>
