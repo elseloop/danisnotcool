@@ -1,0 +1,78 @@
+---
+import {PortableText} from "astro-portabletext";
+import Layout from "../layouts/Layout.astro";
+import PTImage from '../components/portabletext/PTImage.astro';
+import { getAboutPage } from '../utils/sanity';
+export const prerender = false;
+const page = await getAboutPage();
+
+const extraPtComponents = {
+  type: {
+    image: PTImage,
+  }
+}
+---
+<Layout title="About | Dan is not cool.">
+<section class="about-wrap">
+  <div class="container">
+    <div class="about-inner">
+      <h1 class="heading heading--h1">Me me me!</h1>
+      <PortableText value={page[0].body} components={extraPtComponents} />
+    </div>
+</div>
+</section>
+</Layout>
+
+
+<style>
+  .about-wrap {
+    border: 10px solid var(--color-white);
+    background-color: var(--color-orange);
+    background-image: url("../images/float.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    min-height: 300vh;
+    padding: calc(5rem + 100px) 2rem 3rem;
+    color: var(--color-white);
+  }
+
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .about-inner :global(*:not(.heading):not(img):not(img + p)) {
+    grid-column: 3 / span 2;
+  }
+
+  .about-inner :global(p:first-of-type) {
+    font-size: clamp(1.5rem, 0.375rem + 2vw, 2rem);
+  }
+
+  .heading {
+    grid-column: 1 / span 2;
+  }
+
+  .about-inner :global(img) {
+    grid-column: 2 / span 3;
+    height: auto;
+    max-width: 100%;
+  }
+
+  .about-inner :global(img + p) {
+    grid-column: 2 / span 3;
+    font-size: 0.875rem;
+  }
+
+  .about-inner :global(a:hover) {
+    color: var(--color-black);
+  }
+
+  @media (min-width: 700px) {
+  .about-inner {
+    padding: 3rem calc(100px + 3rem);
+  }
+}
+</style>

@@ -32,3 +32,9 @@ export async function getWork() {
     groq`*[_type == "work" && defined(slug.current)] | order(year desc)`
   );
 }
+
+export async function getAboutPage() {
+  return await sanityClient.fetch(
+    groq`*[_type == "page" && defined(slug.current) && slug.current == 'about']`
+  );
+}
