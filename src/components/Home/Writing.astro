@@ -12,6 +12,8 @@ const post = await getMostRecentPost();
     <div class="grid">
       <Card post={post} />
     </div>
+
+    <h4 class="heading heading--h2"><a href="/writing">More writing!&nbsp;&rarr;</a></h4>
   </div>
 </section>
 
@@ -26,16 +28,17 @@ const post = await getMostRecentPost();
 
   .heading--h2 {
     font-size: clamp(3rem, -6.25rem + 50vw, 6rem);
+    margin-top: 2rem;
   }
 
   .heading--h2 a {
-    color: var(--color-white);
+    color: var(--color-black);
     text-decoration: none;
   }
 
   .heading--h2 a:hover,
   .heading--h2 a:focus {
-    color: var(--color-pink);
+    color: var(--color-white);
     text-decoration: underline;
   }
 
