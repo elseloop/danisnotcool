@@ -6,31 +6,31 @@ const { post } = Astro.props;
 ---
 
 <div class="card">
-  {
-    post.mainImage ? (
-      <img
-        class="card__cover"
-        src={urlFor(post.mainImage).width(500).height(300).url()}
-        alt="Cover image"
-      />
-    ) : (
-      <div class="card__cover--none" />
-    )
-  }
-  <div class="card__container">
-    <h3 class="card__title">
-      <a
-        class="card__link"
-        href={`/blog/${post.slug.current}`}
-      >
+  <a class="card__link" href={`/blog/${post.slug.current}`}>
+    {
+      post.mainImage ? (
+        <img
+          class="card__cover"
+          src={urlFor(post.mainImage).width(500).height(300).url()}
+          alt="Cover image"
+        />
+      ) : (
+        <div class="card__cover--none" />
+      )
+    }
+    <div class="card__container">
+      <p class="card__date">
+        {formatDate(post._createdAt)}
+      </p>
+      <h3 class="card__title">
         {post.title}
       </a>
-    </h3>
-    <p class="card__excerpt">{post.excerpt}</p>
-    <p class="card__date">
-      {formatDate(post._createdAt)}
-    </p>
-  </div>
+      </h3>
+      <p class="card__excerpt">
+        {post.excerpt}
+      </p>
+    </div>
+  </a>
 </div>
 
 <style>
@@ -39,8 +39,6 @@ const { post } = Astro.props;
     border-radius: 8px;
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.03);
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
     padding: 1rem;
     position: relative;
     transform: scale(1);
@@ -54,14 +52,25 @@ const { post } = Astro.props;
       transform: scale(1.025);
     }
 
+    & .card__link {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      text-decoration: none;
+      color: var(--color-black);
+    }
+
     & .card__container {
       margin: 0 var(--space-1) 0;
+      display: flex;
+      flex-direction: column;
     }
 
     & .card__cover {
-      width: 100%;
-      height: 231px;
+      aspect-ratio: 16 / 9;
+      border-radius: 8px;
       object-fit: cover;
+      width: 100%;
     }
 
     & .card__cover--none {
@@ -71,32 +80,19 @@ const { post } = Astro.props;
     }
 
     & .card__title {
-      font-family: var(--font-family-sans);
-      font-weight: 800;
-      font-size: var(--font-size-7);
-      line-height: var(--line-height-6);
+      font-weight: 700;
+      font-size: 1.5rem;
       letter-spacing: -0.025em;
-      margin: var(--space-3) 0;
+      margin: 0;
     }
 
     & .card__excerpt {
-      font-family: var(--font-family-serif);
-      font-weight: 400;
-      font-size: var(--font-size-4);
-      line-height: var(--line-height-3);
+      font-size: 1rem;
       margin-top: 0;
     }
 
     & .card__date {
-      font-weight: 600;
-      font-family: var(--font-family-sans);
-      font-size: var(--font-size-1);
-      margin-top: calc(var(--space-4) + 7);
-    }
-
-    & .card__link {
-      color: var(--black);
-      text-decoration: none;
+      font-size: 0.75rem;
     }
   }
 </style>
