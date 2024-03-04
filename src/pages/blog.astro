@@ -6,10 +6,53 @@ export const prerender = false;
 const posts = await getPosts();
 ---
 
-<Layout title="Welcome to Astro.">
-  <section>
-    {posts.length
-      ? posts.map((post) => <Card post={post} />)
-      : 'No posts found.'}
+<Layout title="Contact | Dan is not cool.">
+  <section class="blog-wrap">
+      <h1 class="heading heading--h1">Mostly nouns & verbs</h1>
+      <div class="blog-grid">
+        {posts.length
+          ? posts.map((post) => <Card post={post} />)
+          : 'No posts found.'
+        }
+      </div>
   </section>
 </Layout>
+
+
+<style>
+  .blog-wrap {
+    border: 10px solid var(--color-white);
+    background-color: var(--color-yellow);
+    background-image: url("../images/earthrise.yellow.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    min-height: 300vh;
+    padding: calc(5rem + 100px) 2rem 3rem;
+    color: var(--color-black);
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .heading {
+    line-height: 1;
+    margin: 0;
+    font-family: 'Bebas Neue', cursive;
+  }
+
+  .heading--h1 {
+    font-size: clamp(3.5rem, -13.125rem + 50vw, 10rem);
+    margin-top: 1rem;
+  }
+
+  @media (min-width: 1024px) {
+    .blog-wrap  {
+      padding: calc(5rem + 100px) calc(100px + 3rem) 3rem;
+    }
+  }
+</style>

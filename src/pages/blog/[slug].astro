@@ -12,7 +12,7 @@ export async function getStaticPaths() {
   }));
 }
 
-const { slug } = Astro.params 
+const { slug } = Astro.params
 
 const post = await getPost(slug);
 ---
@@ -23,124 +23,74 @@ const post = await getPost(slug);
       post.mainImage ? (
         <img
           class="post__cover"
-          src={urlFor(post.mainImage).width(1000).url()}
+          src={urlFor(post.mainImage).width(1600).url()}
           alt="Cover image"
         />
       ) : (
         <div class="post__cover--none" />
       )
     }
-    <div class="post__container">
-      <h1 class="post__title">{post.title}</h1>
-      <p class="post__excerpt">{post.excerpt}</p>
-      <p class="post__date">
-        {formatDate(post._createdAt)}
-      </p>
-      <div class="post__content">
-        <PTExtended value={post.body} />
+    <div class="container post_inner">
+      <div class="post__head">
+        <h1 class="heading heading--h1">{post.title}</h1>
+        <p class="post__date">
+          {formatDate(post._createdAt)}
+        </p>
+        <p class="post__excerpt">{post.excerpt}</p>
       </div>
+      <PTExtended value={post.body} />
     </div>
   </section>
 </Layout>
 
 <style>
-  .post {
+
+  .post_inner {
+    align-content: start;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 3rem 2rem;
+  }
+
+  .post__cover {
+    height: 75dvh;
+    margin-bottom: 2rem;
+    object-fit: cover;
     width: 100%;
-    margin: var(--space-1) 0 var(--space-4);
+  }
 
-    & .post__cover,
-    & .post__cover--none {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
+  .post_inner :global(a:hover) {
+    color: var(--color-blue);
+  }
+
+  .post_inner :global(p:first-of-type) {
+    font-size: clamp(1.5rem, 0.375rem + 2vw, 2rem);
+  }
+
+  @media (min-width: 700px) {
+    .post_inner {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 
-    & .post__cover--none {
-      background: var(--black);
+    .post_inner :global(*:not(.post__head):not(img)) {
+      grid-column: 3 / span 2;
     }
 
-    & .post__container {
-      padding: 0 var(--space-3);
+    .post_inner .post__head {
+      grid-column: 1 / span 2;
     }
 
-    & .post__content {
-      font-family: var(--font-family-serif);
-      font-weight: 400;
-      font-size: var(--font-size-4);
-      line-height: var(--line-height-5);
-      letter-spacing: -0.02em;
-      margin-top: var(--space-6);
-
-      /* *todo* with the ampersand nesting,, does not work */
-      /* & */blockquote {
-        border-left: 5px solid  var(--black);
-        padding-left: var(--space-3);
-        margin-left: var(--space-4);
-      }
-
-      & a {
-        color: var(--blue-600);
-        text-decoration: none;
-      }
-    }
-
-    & .post__title {
-      font-family: var(--font-family-sans);
-      font-size: var(--font-size-7);
-      line-height: var(--line-height-6);
-      margin: var(--space-4) 0;
-      font-weight: 800;
-    }
-
-    & .post__excerpt {
-      font-family: var(--font-family-serif);
-      font-size: var(--font-size-5);
-      line-height: var(--line-height-4);
-      margin-top: 0;
-      font-weight: 400;
-    }
-
-    & .post__date {
-      font-family: var(--font-family-sans);
-      font-weight: 600;
-      font-family: var(--font-family-sans);
-      font-size: var(--font-size-1);
-      line-height: var(--line-height-1);
-      margin-top: var(--space-4);
+    .post_inner :global(img) {
+      grid-column: 2 / span 3;
+      height: auto;
+      max-width: 100%;
     }
   }
 
-  @media (min-width: 800px) {
-    .post {
-      & .post__cover,
-      & .post__cover--none {
-        width: 750px;
-        height: 380px;
-      }
-
-      & .post__title {
-        font-size: var(--font-size-10);
-        line-height: var(--line-height-10);
-        margin: var(--space-6) 0 0;
-        letter-spacing: -0.025em;
-      }
-
-      & .post__excerpt {
-        font-size: var(--font-size-5);
-        line-height: var(--line-height-5);
-        margin-top: var(--space-3);
-        margin-bottom: var(--space-3);
-      }
-
-      & .post__date {
-        font-size: var(--font-size-3);
-        line-height: var(--line-height-2);
-        margin-top: var(--space-0);
-      }
-
-      & .post__content {
-        margin-top: var(--space-7);
-      }
+  @media (min-width: 1024px) {
+    .post_inner {
+      padding: 3rem calc(100px + 3rem);
     }
   }
 </style>
