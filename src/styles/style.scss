@@ -181,8 +181,8 @@ width: 1px;
 
 @media (min-width: 700px) {
   .parfait,
-  .feedback-form {
-    padding: 3rem calc(100px + 3rem);
+  .page--contact .feedback-form {
+    padding: 3rem 3rem 3rem calc(100px + 3rem);
   }
 }
 
