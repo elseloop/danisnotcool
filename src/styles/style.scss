@@ -76,6 +76,10 @@ a {
   text-decoration: underline;
 }
 
+pre[class*=language-] {
+  overflow: auto !important;
+}
+
 .flow > * + * {
   margin-block-start: var(--flow-space, 1rem);
 }
