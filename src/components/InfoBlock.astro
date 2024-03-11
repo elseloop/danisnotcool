@@ -1,0 +1,30 @@
+---
+const {emoji, body} = Astro.props;
+---
+
+<div class="infoblock">
+  <div class="emoji">{emoji}</div>
+  <div class="body">
+    <p>{body}</p>
+  </div>
+</div>
+
+<style>
+  .infoblock {
+    align-items: start;
+    background-color: rgb(59 178 115 / 10%);
+    border: 1px solid #e1e1e1;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 2ch;
+    padding: 1rem;
+  }
+
+  .emoji {
+    font-size: 2rem;
+  }
+
+  .body p:first-of-type {
+    font-size: 1rem;
+  }
+</style>

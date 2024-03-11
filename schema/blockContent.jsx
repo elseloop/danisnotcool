@@ -28,8 +28,25 @@ export default defineType({
         { title: "H3", value: "h3" },
         { title: "H4", value: "h4" },
         { title: "Quote", value: "blockquote" },
+        {
+          title: "Small",
+          value: "small",
+          component: ({ children }) => <small>{children}</small>,
+        },
+        {
+          title: "Code Block",
+          value: "codeblock",
+          component: ({ children }) => (
+            <pre>
+              <code>{children}</code>
+            </pre>
+          ),
+        },
       ],
-      lists: [{ title: "Bullet", value: "bullet" }],
+      lists: [
+        { title: "Bullet", value: "bullet" },
+        { title: "Ordered", value: "number" },
+      ],
       // Marks let you mark up inline text in the block editor.
       marks: {
         // Decorators usually describe a single property – e.g. a typographic
@@ -37,6 +54,9 @@ export default defineType({
         decorators: [
           { title: "Strong", value: "strong" },
           { title: "Emphasis", value: "em" },
+          { title: "Underline", value: "underline" },
+          { title: "Strike", value: "strike-through" },
+          { title: "Code", value: "code" },
         ],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
@@ -60,6 +80,12 @@ export default defineType({
       options: {
         hotspot: true,
       },
+    }),
+    defineArrayMember({
+      type: "callout",
+    }),
+    defineArrayMember({
+      type: "infoBlock",
     }),
   ],
 });

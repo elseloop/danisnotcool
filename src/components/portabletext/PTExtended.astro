@@ -1,6 +1,10 @@
 ---
 import PTImage from "./PTImage.astro"
+import PTSmall from "./PTSmall.astro"
+import PTCodeBlock from "./PTCodeBlock.astro"
 import {PortableText} from "astro-portabletext";
+import PTCallout from "./PTCallout.astro";
+import PTInfoBlock from "./PTInfoBlock.astro";
 
 const { value } = Astro.props
 
@@ -19,6 +23,13 @@ const { value } = Astro.props
 const extraPtComponents = {
   type: {
     image: PTImage,
+    callout: PTCallout,
+    infoBlock: PTInfoBlock,
+    // any other .astro extensions
+  },
+  block: {
+    small: PTSmall,
+    codeblock: PTCodeBlock,
     // any other .astro extensions
   }
 }

@@ -31,8 +31,8 @@ const post = await getPost(slug);
       )
     }
     <div class="container post_inner">
-      <div class="post__head">
-        <h1 class="heading heading--h1">{post.title}</h1>
+      <div class="post__head flow">
+        <h1 class="heading heading--h1-alt">{post.title}</h1>
         <p class="post__date">
           {formatDate(post._createdAt)}
         </p>
@@ -47,15 +47,15 @@ const post = await getPost(slug);
 
   .post_inner {
     align-content: start;
+    background-color: #fefefe;
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
-    padding: 3rem 2rem;
+    padding: 5rem 2rem;
   }
 
   .post__cover {
     height: 75dvh;
-    margin-bottom: 2rem;
     object-fit: cover;
     width: 100%;
   }
@@ -66,6 +66,13 @@ const post = await getPost(slug);
 
   .post_inner :global(p:first-of-type) {
     font-size: clamp(1.5rem, 0.375rem + 2vw, 2rem);
+  }
+
+  :global(p code) {
+    background-color: #f1f1f1;
+    display: inline-block;
+    font-size: 1rem;
+    padding: 0.125rem;
   }
 
   @media (min-width: 700px) {
@@ -91,7 +98,7 @@ const post = await getPost(slug);
 
   @media (min-width: 1024px) {
     .post_inner {
-      padding: 3rem calc(100px + 3rem);
+      padding: 5rem calc(100px + 3rem);
     }
   }
 </style>
