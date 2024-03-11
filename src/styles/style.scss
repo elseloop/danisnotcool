@@ -78,6 +78,7 @@ a {
 
 pre[class*=language-] {
   overflow: auto !important;
+  z-index: 0;
 }
 
 .flow > * + * {
